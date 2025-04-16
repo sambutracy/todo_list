@@ -13,7 +13,27 @@ A beautiful, feminine todo list application built on the Internet Computer platf
 
 ## Screenshots
 
-*[This section would contain screenshots of your application]*
+## Screenshots
+
+Here are screenshots of the Pretty Todo List application:
+
+![Task List Overview](images/Screenshot%20(296).png)
+*Main interface showing the task list with pink theme and user-friendly layout*
+
+![Adding Tasks](images/Screenshot%20(297).png)
+*Adding a new task with description and due date*
+
+![Task Filtering](images/Screenshot%20(298).png)
+*Filtering tasks by status - All, Active, Completed, Overdue, and Due Date*
+
+![Task Completion](images/Screenshot%20(299).png)
+*Completed tasks with visual indicators and strikethrough text*
+
+![Task Editing](images/Screenshot%20(300).png)
+*Editing an existing task - update description or change the due date*
+
+![Mobile View](images/Screenshot%20(301).png)
+*Responsive design that works beautifully on mobile devices*
 
 ## Technology Stack
 
