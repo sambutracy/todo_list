@@ -1,59 +1,114 @@
-# `todo_list`
+# Pretty Todo List App
 
-Welcome to your new `todo_list` project and to the Internet Computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+A beautiful, feminine todo list application built on the Internet Computer platform.
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+## Features
 
-To learn more before you start working with `todo_list`, see the following documentation available online:
+- ✨ Create tasks with descriptions and due dates
+- ✅ Mark tasks as complete
+- 🔄 Edit existing tasks
+- 🗑️ Delete tasks
+- 🔍 Filter tasks (All, Active, Completed, Overdue, By Due Date)
+- 💖 Beautiful, girlish UI design with animations and visual feedback
+
+## Screenshots
+
+*[This section would contain screenshots of your application]*
+
+## Technology Stack
+
+- **Backend**: Motoko programming language on the Internet Computer
+- **Frontend**: Vue.js with custom CSS styling
+- **Deployment**: Internet Computer canister infrastructure
+
+## Running the project locally
+
+To run this project locally, follow these steps:
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/todo_list.git
+cd todo_list/
+
+# Install dependencies
+npm install
+
+# Start the local Internet Computer replica
+dfx start --background
+
+# Deploy the canisters to the local replica
+dfx deploy
+```
+
+Once deployed, your application will be available at:
+- Web UI: `http://localhost:4943?canisterId={frontend_canister_id}`
+- API/Candid: `http://localhost:4943?canisterId=__Candid_UI&id={backend_canister_id}`
+
+## Development Workflow
+
+### Backend Changes
+
+If you make changes to the Motoko backend, regenerate the Candid interface:
+
+```bash
+dfx generate
+```
+
+Then redeploy the backend:
+
+```bash
+dfx deploy todo_list_backend
+```
+
+### Frontend Changes
+
+For frontend development:
+
+```bash
+# Start the development server
+npm start
+```
+
+This will start a server at `http://localhost:8080`, proxying API requests to the replica.
+
+## Project Structure
+
+- todo_list_backend - Motoko backend code
+  - `main.mo` - Main actor containing todo list logic
+- todo_list_frontend - Vue.js frontend code
+  - `src/App.vue` - Main application component
+  - `public/` - Static assets
+
+## API Reference
+
+The backend canister provides the following methods:
+
+- `addTask(description: Text, dueDays: Int)` - Add a new task
+- `getTasks()` - Get all tasks
+- `getCompletedTasks()` - Get completed tasks
+- `getIncompleteTasks()` - Get active (incomplete) tasks
+- `getOverdueTasks()` - Get overdue tasks
+- `getTasksSortedByDueDate()` - Get tasks sorted by due date
+- `completeTask(id: Nat)` - Mark a task as completed
+- `editTaskDescription(id: Nat, newDescription: Text)` - Edit task description
+- `editTaskDueDate(id: Nat, newDueDays: Int)` - Edit task due date
+- `deleteTask(id: Nat)` - Delete a task
+
+## Resources
+
+Learn more about Internet Computer development:
 
 - [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
 - [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
 - [Motoko Programming Language Guide](https://internetcomputer.org/docs/current/motoko/main/motoko)
 - [Motoko Language Quick Reference](https://internetcomputer.org/docs/current/motoko/main/language-manual)
 
-If you want to start working on your project right away, you might want to try the following commands:
+## Deployment to the Internet Computer Mainnet
+
+To deploy to the IC mainnet:
 
 ```bash
-cd todo_list/
-dfx help
-dfx canister --help
+dfx deploy --network ic
 ```
 
-## Running the project locally
-
-If you want to test your project locally, you can use the following commands:
-
-```bash
-# Starts the replica, running in the background
-dfx start --background
-
-# Deploys your canisters to the replica and generates your candid interface
-dfx deploy
-```
-
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
-
-If you have made changes to your backend canister, you can generate a new candid interface with
-
-```bash
-npm run generate
-```
-
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
-
-If you are making frontend changes, you can start a development server with
-
-```bash
-npm start
-```
-
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
-
-### Note on frontend environment variables
-
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
-
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+Note: This requires cycles and an identity with cycles to pay for canister creation and computation.
